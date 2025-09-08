@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - FLUXX-EROX</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0d0d0d;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      background: #000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header .logo {
+      display: flex;
+      align-items: center;
+      font-weight: bold;
+      color: #ff004c;
+      font-size: 20px;
+    }
+
+    header .logo img {
+      margin-right: 10px;
+    }
+
+    nav a {
+      margin: 0 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ff004c;
+    }
+
+    nav a.active {
+      color: #ff004c;
+      border-bottom: 2px solid #ff004c;
+      padding-bottom: 3px;
+    }
+
+    /* About Section */
+    .about-section {
+      text-align: center;
+      padding: 80px 20px;
+      background: linear-gradient(to bottom, #111, #0d0d0d);
+    }
+
+    .about-section h1 {
+      font-size: 40px;
+      color: #ff004c;
+      margin-bottom: 15px;
+      display: inline-block;
+      border-right: 3px solid #ff004c;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 3s steps(20) 1s forwards, blink 0.7s infinite;
+    }
+
+    .about-section p {
+      font-size: 18px;
+      color: #bbb;
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.6;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1.5s ease-in-out forwards;
+      animation-delay: 3.5s;
+    }
+
+    /* Stats Section */
+    .stats {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding: 60px 20px;
+      background: #111;
+      gap: 40px;
+    }
+
+    .stat-box {
+      text-align: center;
+      flex: 1 1 200px;
+      max-width: 220px;
+      background: #0d0d0d;
+      padding: 30px 20px;
+      border-radius: 12px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .stat-box.visible {
+      animation: fadeInUp 1s ease-in-out forwards;
+    }
+
+    .stat-box:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 0 25px rgba(255, 0, 76, 0.5);
+    }
+
+    .stat-box i {
+      font-size: 40px;
+      color: #ff004c;
+      margin-bottom: 15px;
+    }
+
+    .stat-box h2 {
+      color: #ff004c;
+      margin: 10px 0;
+    }
+
+    .stat-box p {
+      color: #bbb;
+      font-size: 15px;
+    }
+
+    /* Offer Section */
+    .offer {
+      padding: 80px 20px;
+      background: #0d0d0d;
+      text-align: center;
+    }
+
+    .offer h2 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    .offer p {
+      color: #bbb;
+      max-width: 700px;
+      margin: 0 auto 50px;
+    }
+
+    .offer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .offer-card {
+      background: #1a1a1a;
+      padding: 30px;
+      border-radius: 12px;
+      text-align: left;
+      transition: transform 0.3s, box-shadow 0.3s;
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .offer-card.visible {
+      animation: fadeInUp 1s ease-in-out forwards;
+    }
+
+    .offer-card:hover {
+      transform: translateY(-10px) scale(1.03);
+      box-shadow: 0 0 25px rgba(255, 0, 76, 0.5);
+    }
+
+    .offer-card i {
+      font-size: 32px;
+      color: #ff004c;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .offer-card h3 {
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .offer-card p {
+      color: #bbb;
+      margin-bottom: 10px;
+    }
+
+    .offer-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      color: #bbb;
+    }
+
+    .offer-card ul li {
+      margin: 6px 0;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .offer-card ul li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: #ff004c;
+    }
+
+    /* How It Works */
+    .how-it-works {
+      padding: 80px 20px;
+      text-align: center;
+      background: #111;
+    }
+
+    .how-it-works h2 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    .steps {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-top: 40px;
+    }
+
+    .step {
+      text-align: center;
+      max-width: 220px;
+    }
+
+    .step-circle {
+      width: 60px;
+      height: 60px;
+      background: #ff004c;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: bold;
+      margin: 0 auto 15px;
+    }
+
+    /* Support Section */
+    .support {
+      padding: 80px 20px;
+      text-align: center;
+      background: #0d0d0d;
+    }
+
+    .support h2 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    .support p {
+      color: #bbb;
+      margin-bottom: 50px;
+    }
+
+    .support-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .support-card {
+      max-width: 300px;
+      text-align: center;
+    }
+
+    .support-card i {
+      font-size: 40px;
+      color: #ff004c;
+      margin-bottom: 15px;
+    }
+
+    /* Footer */
+    footer {
+      background: #000;
+      color: #bbb;
+      padding: 50px 20px;
+    }
+
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-logo img {
+      width: 50px;
+      margin-bottom: 10px;
+    }
+
+    .footer-logo h3 {
+      color: #ff004c;
+    }
+
+    .footer-container ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-container ul li {
+      margin: 8px 0;
+    }
+
+    .footer-container a {
+      color: #bbb;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-container a:hover {
+      color: #ff004c;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #777;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+  </style>
+</head>
+<body class="about">
+
+<!-- Header -->
+<header>
+  <div class="logo">
+    <img src="logo.png" alt="logo" width="40"> FLUXX-EROX
+  </div>
+  <nav>
+    <a href="index.html" class="nav-home">Home</a>
+    <a href="packages.html" class="nav-packages">Packages</a>
+    <a href="about.html" class="nav-about">About</a>
+  </nav>
+</header>
+
+<script>
+  // Highlight active nav based on body class
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.body.classList.contains("home")) {
+      document.querySelector(".nav-home").classList.add("active");
+    } else if (document.body.classList.contains("about")) {
+      document.querySelector(".nav-about").classList.add("active");
+    } else if (document.body.classList.contains("packages")) {
+      document.querySelector(".nav-packages").classList.add("active");
+    }
+  });
+</script>
+
+<!-- About Section -->
+<section class="about-section">
+  <h1>About Us</h1>
+  <p>
+    At FLUXX-EROX, we are dedicated to providing reliable and powerful tools 
+    with unbeatable support. Our mission is to ensure top-tier performance, 
+    security, and customer satisfaction for all our users worldwide.
+  </p>
+</section>
+
+<!-- Stats Section -->
+<section class="stats">
+  <div class="stat-box"><i class="fas fa-users"></i><h2>10,000+</h2><p>Happy Customers</p></div>
+  <div class="stat-box"><i class="fas fa-bolt"></i><h2>99.9%</h2><p>Uptime Guarantee</p></div>
+  <div class="stat-box"><i class="fas fa-headset"></i><h2>24/7</h2><p>Support Available</p></div>
+  <div class="stat-box"><i class="fas fa-shield-alt"></i><h2>100%</h2><p>Server Safe</p></div>
+</section>
+
+<!-- Offer Section -->
+<section class="offer">
+  <h2><span style="color:white;">What We</span> <span style="color:#ff004c;">Offer</span></h2>
+  <p>Comprehensive services designed to give you the ultimate gaming advantage.</p>
+  <div class="offer-grid">
+    <div class="offer-card">
+      <i class="fas fa-shield-alt"></i>
+      <h3>Security & Protection</h3>
+      <p>Advanced anti-detection technology keeps your account safe</p>
+      <ul>
+        <li>Real-time anti-cheat bypass</li>
+        <li>Server-safe guarantee</li>
+        <li>Account protection protocols</li>
+        <li>Regular security updates</li>
+      </ul>
+    </div>
+    <div class="offer-card">
+      <i class="fas fa-headset"></i>
+      <h3>24/7 Customer Support</h3>
+      <p>Round-the-clock assistance from our expert team</p>
+      <ul>
+        <li>Instant WhatsApp support</li>
+        <li>Discord community</li>
+        <li>Telegram channel</li>
+        <li>Video call assistance</li>
+      </ul>
+    </div>
+    <div class="offer-card">
+      <i class="fas fa-download"></i>
+      <h3>Instant Setup & Installation</h3>
+      <p>Get up and running within minutes of purchase</p>
+      <ul>
+        <li>One-click installation</li>
+        <li>Automated configuration</li>
+        <li>Video tutorials</li>
+        <li>Remote assistance available</li>
+      </ul>
+    </div>
+    <div class="offer-card">
+      <i class="fas fa-cogs"></i>
+      <h3>Custom Configuration</h3>
+      <p>Personalized settings tailored to your playstyle</p>
+      <ul>
+        <li>Professional settings optimization</li>
+        <li>Device-specific configuration</li>
+        <li>Performance tuning</li>
+        <li>Competitive advantages</li>
+      </ul>
+    </div>
+    <div class="offer-card">
+      <i class="fas fa-clock"></i>
+      <h3>Regular Updates</h3>
+      <p>Stay ahead with constant improvements and new features</p>
+      <ul>
+        <li>Weekly security patches</li>
+        <li>Feature enhancements</li>
+        <li>Game compatibility updates</li>
+        <li>Performance optimizations</li>
+      </ul>
+    </div>
+    <div class="offer-card">
+      <i class="fas fa-users"></i>
+      <h3>Community Access</h3>
+      <p>Join our exclusive community of elite gamers</p>
+      <ul>
+        <li>Private Discord server</li>
+        <li>Strategy sharing</li>
+        <li>Tournament information</li>
+        <li>Pro player insights</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="how-it-works">
+  <h2><span style="color:white;">How It</span> <span style="color:#ff004c;">Works</span></h2>
+  <p>Simple steps to get started with LUNOX CHEATS.</p>
+  <div class="steps">
+    <div class="step">
+      <div class="step-circle">1</div>
+      <h3>Choose Package</h3>
+      <p>Select the perfect gaming package for your needs</p>
+    </div>
+    <div class="step">
+      <div class="step-circle">2</div>
+      <h3>Contact Us</h3>
+      <p>Reach out via WhatsApp, Discord, or Telegram</p>
+    </div>
+    <div class="step">
+      <div class="step-circle">3</div>
+      <h3>Make Payment</h3>
+      <p>Secure payment through multiple methods</p>
+    </div>
+    <div class="step">
+      <div class="step-circle">4</div>
+      <h3>Get Started</h3>
+      <p>Instant setup and lifetime support</p>
+    </div>
+  </div>
+</section>
+
+<!-- Support Information -->
+<section class="support">
+  <h2><span style="color:white;">Support</span> <span style="color:#ff004c;">Information</span></h2>
+  <p>Everything you need to know about getting help from our team.</p>
+  <div class="support-grid">
+    <div class="support-card">
+      <i class="fas fa-clock"></i>
+      <h3>Response Time</h3>
+      <p>We typically respond within 5-10 minutes during active hours</p>
+    </div>
+    <div class="support-card">
+      <i class="fas fa-phone"></i>
+      <h3>Availability</h3>
+      <p>24/7 support through WhatsApp, Discord, and Telegram</p>
+    </div>
+    <div class="support-card">
+      <i class="fas fa-globe"></i>
+      <h3>Global Support</h3>
+      <p>Serving customers worldwide with localized assistance</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-container">
+    <div class="footer-logo">
+      <img src="logo.png" alt="Logo" width="60">
+      <h3>FLUXX CHEATS</h3>
+      <p>
+        Professional gaming enhancement tools for competitive gamers.  
+        Server-safe cheats with guaranteed updates and support.
+      </p>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="packages.html">Packages</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Products</h4>
+      <ul>
+        <li><a href="#">Internal Preview</a></li>
+        <li><a href="#">Phone Panel</a></li>
+        <li><a href="#">Paid Sensi</a></li>
+        <li><a href="#">Aim Kill</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul class="contact-links">
+        <li><a href="#" class="whatsapp">WhatsApp</a></li>
+        <li><a href="https://discord.gg/TPEBbtqvxh" target="_blank" class="discord">Discord</a></li>
+        <li><a href="#" class="telegram">Telegram</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 FLUXX CHEATS. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal for stats and offers
+  const revealElements = document.querySelectorAll(".stat-box, .offer-card");
+
+  function revealOnScroll() {
+    let windowHeight = window.innerHeight;
+    revealElements.forEach(el => {
+      let revealTop = el.getBoundingClientRect().top;
+      if (revealTop < windowHeight - 50) {
+        el.classList.add("visible");
+      }
+    });
+  }
+
+  window.addEventListener("scroll", revealOnScroll);
+  window.addEventListener("load", revealOnScroll);
+</script>
+
+</body>
+</html>

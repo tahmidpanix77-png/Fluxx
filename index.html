@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FLUXX-EROX</title>
+  <style>
+    :root {
+      --primary: #ff004c;
+      --primary-dark: #cc003d;
+      --bg-dark: #0d0d0d;
+      --bg-light: #141414;
+      --muted: #bdbdbd;
+      --text: #f5f5f5;
+      --green: #22c55e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: var(--bg-dark);
+      color: var(--text);
+      line-height: 1.45;
+      scroll-behavior: smooth;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 40px;
+      background: rgba(0,0,0,0.85);
+      z-index: 999; backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,0,76,0.03);
+    }
+    .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--primary); font-size: 1.05rem }
+    .logo img { height: 46px; width: 46px; border-radius: 50%; object-fit: cover }
+    nav ul { display: flex; gap: 24px; list-style: none }
+    nav a {
+      color: var(--text); text-decoration: none; font-weight: 600;
+      opacity: .95; transition: color .3s, border-bottom .3s;
+      padding-bottom: 2px;
+    }
+    nav a:hover { color: var(--primary) }
+    nav a.active {
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary);
+    }
+
+    /* HERO */
+    header {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      gap: 48px; padding: 120px 8%; position: relative; overflow: hidden;
+    }
+    .bg-shape { position: absolute; border-radius: 50%; filter: blur(110px); opacity: 0.6; z-index: 0; pointer-events: none }
+    .bg-shape.red { background: var(--primary); width: 420px; height: 420px; top: -140px; left: -120px }
+    .bg-shape.orange { background: #ff6600; width: 360px; height: 360px; bottom: -140px; right: -120px }
+    .hero-text { flex: 1; min-width: 320px; max-width: 720px; z-index: 1 }
+    .hero-text h1 { font-size: 3.2rem; line-height: 1.02; margin-bottom: 18px; font-weight: 800 }
+    .hero-text h1 span { color: var(--primary) }
+    .hero-text p { color: var(--muted); max-width: 680px; margin-bottom: 26px; font-size: 1.05rem }
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap }
+    .btn {
+      display: inline-block; background: var(--primary); color: #fff; text-decoration: none;
+      padding: 12px 28px; border-radius: 30px; font-weight: 700;
+      box-shadow: 0 14px 36px rgba(255,0,76,0.12);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .btn:hover { transform: translateY(-4px) }
+    .btn.alt { background: transparent; border: 2px solid rgba(255,255,255,0.06); color: var(--text) }
+    .hero-image { flex: 1; min-width: 260px; display: flex; justify-content: center; align-items: center; z-index: 1; position: relative }
+    .hero-image img { width: 360px; max-width: 90%; border-radius: 50%; animation: float 3.2s ease-in-out infinite; position: relative; z-index: 2 }
+    @keyframes float { 0%{transform:translateY(0)} 50%{transform:translateY(-12px)} 100%{transform:translateY(0)} }
+
+    /* SECTION BASE */
+    section { padding: 88px 20px; text-align: center }
+    section h2 { font-size: 2.4rem; margin-bottom: 10px }
+    section p.lead { color: var(--muted); margin-bottom: 36px; max-width: 900px; margin-left: auto; margin-right: auto }
+
+    /* FEATURES */
+    .features {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 20px;
+      max-width: 1200px; margin: 0 auto; align-items: start;
+    }
+    .feature-box {
+      background: var(--bg-light); padding: 28px; border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.02);
+      transition: transform .3s ease, box-shadow .3s ease;
+      text-align: left; min-height: 160px;
+      opacity: 0; transform: translateX(-40px);
+    }
+    .feature-box:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 0 25px rgba(255,0,76,0.4) }
+    .feature-icon {
+      width: 42px; height: 42px; border-radius: 8px; background: rgba(255,0,76,0.04);
+      display: inline-flex; align-items: center; justify-content: center;
+      color: var(--primary); font-size: 18px; margin-bottom: 12px;
+    }
+    .feature-box h3 { font-size: 1.05rem; margin-bottom: 8px; color: #fff }
+    .feature-box p { font-size: 0.95rem; color: var(--muted); margin: 0 }
+
+    /* PRICING */
+    #pricing h2 { font-size: 2.6rem; margin-bottom: 8px }
+    #pricing .accent { color: var(--primary) }
+    .pricing-container {
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 24px;
+      max-width: 1200px; margin: 30px auto 8px;
+    }
+    .pricing-box {
+      background: var(--bg-light); padding: 28px; border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.03); min-height: 300px;
+      display: flex; flex-direction: column;
+      opacity: 0; transform: translateX(-40px);
+      transition: transform .3s ease, box-shadow .3s ease;
+    }
+    .pricing-box:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 0 30px rgba(255,0,76,0.4) }
+    .pricing-box h3 { margin: 0 0 6px 0; color: var(--primary); font-weight: 700 }
+    .pricing-box .price { font-size: 1.35rem; font-weight: 800; color: #fff; margin-bottom: 12px }
+    .pricing-box ul { list-style: none; padding: 0; margin: 0 0 12px 0; flex: 1 }
+    .pricing-box li { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; color: var(--muted); font-size: 0.96rem }
+    .tick { color: var(--green); font-weight: 700; margin-top: 2px }
+    .pricing-box.highlight { border: 2px solid rgba(255,255,255,0.9); box-shadow: 0 30px 72px rgba(255,0,76,0.12) }
+    .pricing-cta {
+      display: inline-block; margin-top: 20px; background: var(--primary);
+      color: #fff; padding: 12px 28px; border-radius: 26px; text-decoration: none;
+      font-weight: 700; opacity: 0; transform: translateX(-40px);
+    }
+
+    /* FOOTER */
+    footer { background: #111; padding: 56px 40px 28px; margin-top: 48px; color: var(--muted) }
+    .footer-grid {
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 30px; max-width: 1200px; margin: 0 auto;
+    }
+    .footer-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--primary); font-size: 1.05rem; margin-bottom: 10px }
+    .footer-logo img { height: 42px; width: 42px; border-radius: 50%; object-fit: cover }
+    .footer-col h4 { margin-bottom: 12px; color: #fff; font-size: 1.05rem }
+    .footer-col ul { list-style: none; padding: 0; margin: 0 }
+    .footer-col li { margin-bottom: 10px }
+    .footer-col a { color: var(--muted); text-decoration: none }
+    .footer-col a:hover { color: var(--primary) }
+    .footer-bottom {
+      margin-top: 34px; border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 18px; display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; color: var(--muted);
+      font-size: 0.92rem; max-width: 1200px; margin: 34px auto 0;
+    }
+    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 8px; background: rgba(255,255,255,0.02); color: var(--muted); text-decoration: none }
+    .badge.whatsapp { color: var(--green) }
+    .badge.discord { color: #5865F2 }
+    .badge.telegram { color: #229ED9 }
+
+    /* ANIMATIONS */
+    .fade-up { opacity: 0; transform: translateX(-40px); transition: all 0.8s ease }
+    .fade-up.visible { opacity: 1; transform: translateX(0) }
+
+    /* RESPONSIVE */
+    @media (max-width:1024px) { .features { grid-template-columns: repeat(2,1fr) } }
+    @media (max-width:720px) {
+      header { padding: 80px 6% 40px; flex-direction: column; gap: 28px }
+      .hero-text h1 { font-size: 2rem; text-align: center }
+      .hero-text p { text-align: center }
+      .hero-image { order: -1 }
+    }
+    @media (max-width:480px) {
+      .footer-bottom { flex-direction: column; gap: 10px; text-align: center }
+      .pricing-container { gap: 18px }
+      .feature-box { padding: 20px }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav>
+    <div class="logo fade-up">
+      <img src="logo.png" alt="FLUXX logo">
+      <span>FLUXX-EROX</span>
+    </div>
+    <ul>
+      <li><a href="index.html" class="fade-up">Home</a></li>
+      <li><a href="packages.html" class="fade-up">Packages</a></li>
+      <li><a href="about.html" class="fade-up">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header id="home">
+    <div class="bg-shape red"></div>
+    <div class="bg-shape orange"></div>
+    <div class="hero-text fade-up">
+      <h1 class="fade-up">Professional <span>Gaming</span><br> Enhancement Tools</h1>
+      <p class="fade-up">Dominate the competition with our server-safe, undetectable gaming tools. Professional grade cheats with 1-year updates and 24/7 support.</p>
+      <div class="hero-ctas fade-up">
+        <a class="btn fade-up" href="#pricing">View Packages</a>
+        <a class="btn alt fade-up" href="#features">Why FLUXX</a>
+      </div>
+    </div>
+    <div class="hero-image fade-up">
+      <img src="logo.png" alt="FLUXX logo floating">
+    </div>
+  </header>
+
+  <!-- FEATURES -->
+  <section id="features">
+    <h2 class="fade-up">Why Choose <span style="color:var(--primary)">FLUXX</span>?</h2>
+    <p class="lead fade-up">We provide the most advanced, secure, and reliable tools in the industry.</p>
+    <div class="features">
+      <article class="feature-box fade-up">
+        <div class="feature-icon">🛡️</div>
+        <h3>Server-Safe</h3>
+        <p>All our tools are completely undetectable and server-safe.</p>
+      </article>
+      <article class="feature-box fade-up">
+        <div class="feature-icon">⏰</div>
+        <h3>24/7 Support</h3>
+        <p>Round-the-clock customer support for all your needs.</p>
+      </article>
+      <article class="feature-box fade-up">
+        <div class="feature-icon">⚡</div>
+        <h3>Instant Updates</h3>
+        <p>Get immediate updates when new versions are released.</p>
+      </article>
+      <article class="feature-box fade-up">
+        <div class="feature-icon">👥</div>
+        <h3>Community</h3>
+        <p>Join thousands of satisfied users worldwide.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <h2 class="fade-up"><span>Premium</span> <span class="accent">Gaming Packages</span></h2>
+    <p class="lead fade-up">Choose from our range of professional gaming enhancement tools.</p>
+    <div class="pricing-container">
+      <div class="pricing-box fade-up">
+        <h3>Internal Preview</h3>
+        <div class="price">₹1,499</div>
+        <ul>
+          <li><span class="tick">✔</span> Advanced ESP</li>
+          <li><span class="tick">✔</span> Aimbot</li>
+          <li><span class="tick">✔</span> Anti-ban protection</li>
+          <li><span class="tick">✔</span> 1-year updates</li>
+        </ul>
+      </div>
+      <div class="pricing-box highlight fade-up">
+        <h3>Phone Panel</h3>
+        <div class="price">₹1,999</div>
+        <ul>
+          <li><span class="tick">✔</span> Mobile control panel</li>
+          <li><span class="tick">✔</span> Remote activation</li>
+          <li><span class="tick">✔</span> All Internal features</li>
+          <li><span class="tick">✔</span> Priority support</li>
+        </ul>
+      </div>
+      <div class="pricing-box fade-up">
+        <h3>Aim Kill</h3>
+        <div class="price">₹999</div>
+        <ul>
+          <li><span class="tick">✔</span> Perfect accuracy</li>
+          <li><span class="tick">✔</span> Headshot guarantee</li>
+          <li><span class="tick">✔</span> Customizable settings</li>
+          <li><span class="tick">✔</span> Regular updates</li>
+        </ul>
+      </div>
+    </div>
+    
+    <a href="packages.html" class="pricing-cta fade-up" class="btn">View All Packages →</a>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col fade-up">
+        <div class="footer-logo">
+          <img src="logo.png" alt="FLUXX logo">
+          <span>FLUXX CHEATS</span>
+        </div>
+        <p>Professional gaming enhancement tools for competitive gamers. Server-safe cheats with guaranteed updates and support.</p>
+      </div>
+      <div class="footer-col fade-up">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="packages.html">Packages</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+      <div class="footer-col fade-up">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="#">Internal Preview</a></li>
+          <li><a href="#">Phone Panel</a></li>
+          <li><a href="#">Paid Sensi</a></li>
+          <li><a href="#">Aim Kill</a></li>
+        </ul>
+      </div>
+      <div class="footer-col fade-up">
+        <h4>Contact</h4>
+        <a class="badge whatsapp" href="#">WhatsApp</a><br>
+        <a class="badge discord" href="https://discord.gg/TPEBbtqB">Discord</a><br>
+        <a class="badge telegram" href="#">Telegram</a>
+      </div>
+    </div>
+    <div class="footer-bottom fade-up">
+      <p>© 2024 FLUXX CHEATS. All rights reserved.</p>
+      <p>Made with ❤️ by fluxx Team</p>
+    </div>
+  </footer>
+
+  <!-- SCRIPT -->
+<script>
+  // Animate fade-up
+  const faders = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      } else {
+        entry.target.classList.remove('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+  faders.forEach(el => observer.observe(el));
+
+  // Active nav link
+  const navLinks = document.querySelectorAll("nav a");
+  let currentPage = window.location.pathname.split("/").pop();
+
+  if (currentPage === "" || currentPage === "index.html") {
+    currentPage = "index.html";
+  }
+
+  navLinks.forEach(link => {
+    if (link.getAttribute("href") === currentPage) {
+      link.classList.add("active");
+    }
+  });
+</script>
+
+</body>
+</html>

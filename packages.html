@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FLUXX-EROX - Packages</title>
+  <style>
+   :root {
+  --primary: #ff004c;
+  --primary-dark: #cc003d;
+  --bg-dark: #0d0d0d;
+  --bg-light: #141414;
+  --text: #fff;
+  --text-muted: #999;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--bg-dark);
+  color: var(--text);
+}
+
+/* Header */
+header {
+  background: #000;
+  padding: 0 25px;
+  height: 70px;                
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.6);
+}
+
+header .logo {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: var(--primary);
+}
+
+header .logo img {
+  margin-right: 8px;
+  border-radius: 50%;
+}
+
+header nav {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+header nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 70px;
+  padding: 0 8px;
+  letter-spacing: -0.3px;
+  transition: color 0.3s;
+}
+
+header nav a:hover {
+  color: var(--primary);
+}
+
+/* Active link style */
+header nav a.active {
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 2px;
+}
+
+/* Packages Section */
+.packages {
+  padding: 150px 50px 80px;
+  text-align: center;
+}
+
+.packages h1 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: var(--primary);
+}
+
+.pricing-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.pricing-card {
+  background: #111;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.pricing-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.pricing-card h2 {
+  color: var(--text);
+  margin: 10px 0;
+}
+
+.price {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--primary);
+  margin: 15px 0;
+}
+
+.old-price {
+  text-decoration: line-through;
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-left: 8px;
+}
+
+.features {
+  text-align: left;
+  margin-top: 20px;
+  color: var(--text-muted);
+}
+
+.features li {
+  margin: 8px 0;
+  list-style: none;
+}
+
+.features li::before {
+  content: "✔";
+  margin-right: 8px;
+  color: limegreen;
+}
+
+.btn {
+  display: block;
+  margin: 25px auto 0;
+  padding: 12px;
+  background: var(--primary);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background: var(--primary-dark);
+}
+
+.popular {
+  border: 2px solid var(--primary);
+}
+
+.popular-tag {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--primary);
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+/* Footer */
+footer {
+  background: #111;
+  padding: 50px 20px;
+  margin-top: 80px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-col h4 {
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.footer-col p {
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.footer-col a {
+  display: block;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-bottom: 8px;
+  transition: color 0.3s;
+}
+
+.footer-col a:hover {
+  color: var(--primary);
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.footer-logo img {
+  width: 40px;
+  margin-right: 10px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+}
+
+.whatsapp { background: #111; color: #25D366; }
+.discord { background: #111; color: #5865F2; }
+.telegram { background: #111; color: #0088cc; }
+
+.footer-bottom {
+  text-align: center;
+  color: var(--text-muted);
+  margin-top: 30px;
+  border-top: 1px solid #333;
+  padding-top: 15px;
+  font-size: 0.9rem;
+}
+
+.guarantee {
+  text-align: center;
+  padding: 60px 20px;
+  background: var(--bg-dark);
+  color: white;
+}
+
+.guarantee h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.guarantee p {
+  margin-bottom: 40px;
+  color: #ccc;
+}
+
+.guarantee-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.guarantee-item {
+  background: #1a1a1a;
+  padding: 15px 20px;
+  border-radius: 10px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: white;
+  min-height: 60px;
+}
+
+.guarantee-item i {
+  color: #00c853;
+  font-weight: bold;
+}
+
+/* Animations */
+[data-animate] {
+  opacity: 0;
+  transform: translateX(-50px) translateY(50px);
+  transition: all 0.8s ease-out;
+}
+[data-animate].show {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+}
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease-out;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="logo" width="40"> FLUXX-EROX
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="packages.html" class="active">Packages</a>
+      <a href="about.html">About</a>
+    </nav>
+  </header>
+
+  <!-- Packages Section -->
+  <section class="packages">
+    <h1 data-animate>Choose Your Package</h1>
+    <div class="pricing-container">
+      <!-- Internal Preview -->
+      <div class="pricing-card" data-animate>
+        <h2>Internal Preview</h2>
+        <div class="price">₹1,499 <span class="old-price">₹2,000</span></div>
+        <p>Perfect for competitive players who need reliable tools</p>
+        <ul class="features">
+          <li>Advanced ESP (Player locations)</li>
+          <li>Professional Aimbot</li>
+          <li>Anti-ban protection</li>
+          <li>Undetectable by anti-cheat</li>
+          <li>1-year free updates</li>
+          <li>24/7 support access</li>
+          <li>Custom settings panel</li>
+          <li>Multiple game support</li>
+        </ul>
+        <a href="#" class="btn">Purchase Now</a>
+      </div>
+
+      <!-- Phone Panel -->
+      <div class="pricing-card popular" data-animate>
+        <div class="popular-tag">Most Popular</div>
+        <h2>Phone Panel</h2>
+        <div class="price">₹1,999 <span class="old-price">₹2,500</span></div>
+        <p>Most popular choice - control everything from your phone</p>
+        <ul class="features">
+          <li>All Internal Preview features</li>
+          <li>Mobile control panel</li>
+          <li>Remote activation/deactivation</li>
+          <li>Phone-based configuration</li>
+          <li>Stealth mode activation</li>
+          <li>Priority customer support</li>
+          <li>Advanced customization</li>
+          <li>Multi-device compatibility</li>
+        </ul>
+        <a href="#" class="btn">Purchase Now</a>
+      </div>
+
+      <!-- Paid Sensi -->
+      <div class="pricing-card" data-animate>
+        <h2>Paid Sensi</h2>
+        <div class="price">₹199 <span class="old-price">₹300</span></div>
+        <p>Enhance your gameplay with professional sensitivity settings</p>
+        <ul class="features">
+          <li>Professional sensitivity settings</li>
+          <li>Pre-configured for pro players</li>
+          <li>Instant improvement</li>
+          <li>Easy one-click setup</li>
+          <li>Compatible with all devices</li>
+          <li>Regular updates</li>
+          <li>Performance optimization</li>
+          <li>Setup tutorial included</li>
+        </ul>
+        <a href="#" class="btn">Purchase Now</a>
+      </div>
+
+      <!-- Paid Push -->
+      <div class="pricing-card" data-animate>
+        <h2>Paid Push</h2>
+        <div class="price">₹499 <span class="old-price">₹700</span></div>
+        <p>Perfect for ranking up quickly and efficiently</p>
+        <ul class="features">
+          <li>Aggressive gameplay enhancement</li>
+          <li>Push rank optimization</li>
+          <li>Advanced movement assist</li>
+          <li>Tactical advantage tools</li>
+          <li>Rank boosting features</li>
+          <li>Performance analytics</li>
+          <li>Strategy recommendations</li>
+          <li>Competitive edge tools</li>
+        </ul>
+        <a href="#" class="btn">Purchase Now</a>
+      </div>
+
+      <!-- Aim Kill -->
+      <div class="pricing-card" data-animate>
+        <h2>Aim Kill</h2>
+        <div class="price">₹999 <span class="old-price">₹1,200</span></div>
+        <p>Ultimate aiming solution for competitive gaming</p>
+        <ul class="features">
+          <li>Perfect accuracy guarantee</li>
+          <li>Headshot optimization</li>
+          <li>Recoil compensation</li>
+          <li>Bullet trajectory assist</li>
+          <li>Customizable aim settings</li>
+          <li>Multiple weapon support</li>
+          <li>Training mode included</li>
+          <li>Professional-grade precision</li>
+        </ul>
+        <a href="#" class="btn">Purchase Now</a>
+      </div>
+    </div>
+  </section>
+
+ <!-- Guarantee Section -->
+<section class="guarantee" data-aos="fade-up">
+  <h2><span style="color:white;">Our</span> <span style="color:#ff004c;">Guarantee</span></h2>
+  <p>We stand behind our products with industry-leading guarantees and support.</p>
+  <div class="guarantee-grid">
+    <div class="guarantee-item"><i>✔</i> 100% Server-Safe - Never get banned</div>
+    <div class="guarantee-item"><i>✔</i> Instant activation after payment</div>
+    <div class="guarantee-item"><i>✔</i> 1-year free updates included</div>
+    <div class="guarantee-item"><i>✔</i> 24/7 customer support</div>
+    <div class="guarantee-item"><i>✔</i> Money-back guarantee</div>
+    <div class="guarantee-item"><i>✔</i> Regular security updates</div>
+  </div>
+</section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col fade-up">
+        <div class="footer-logo">
+          <img src="logo.png" alt="FLUXX logo">
+          <span>FLUXX CHEATS</span>
+        </div>
+        <p>Professional gaming enhancement tools for competitive gamers. Server-safe cheats with guaranteed updates and support.</p>
+      </div>
+      <div class="footer-col fade-up">
+        <h4>Quick Links</h4>
+        <a href="index.html">Home</a>
+        <a href="features.html">Features</a>
+        <a href="packages.html">Packages</a>
+        <a href="about.html">About</a>
+      </div>
+      <div class="footer-col fade-up">
+        <h4>Products</h4>
+        <a href="#">Internal Preview</a>
+        <a href="#">Phone Panel</a>
+        <a href="#">Paid Sensi</a>
+        <a href="#">Aim Kill</a>
+      </div>
+      <div class="footer-col fade-up">
+        <h4>Contact</h4>
+        <a class="badge whatsapp" href="#">WhatsApp</a>
+        <a class="badge discord" href="https://discord.gg/TPEBbtqB">Discord</a>
+        <a class="badge telegram" href="#">Telegram</a>
+      </div>
+    </div>
+    <div class="footer-bottom fade-up">
+      <p>© 2024 FLUXX CHEATS. All rights reserved.</p>
+      <p>Made with ❤️ by fluxx Team</p>
+    </div>
+  </footer>
+
+  <!-- Scroll Animation Script -->
+  <script>
+    // for package cards + titles
+    const elements = document.querySelectorAll("[data-animate]");
+    function animateOnScroll() {
+      elements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 50 && rect.bottom > 50) {
+          el.classList.add("show");
+        } else {
+          el.classList.remove("show");
+        }
+      });
+    }
+    window.addEventListener("scroll", animateOnScroll);
+    window.addEventListener("load", animateOnScroll);
+
+    // for footer fade-up
+    const faders = document.querySelectorAll(".fade-up");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        } else {
+          entry.target.classList.remove("visible");
+        }
+      });
+    }, { threshold: 0.2 });
+    faders.forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
