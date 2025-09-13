@@ -47,7 +47,7 @@
       border: 2px solid rgba(255,255,255,0.1);
       color: var(--text);
     }
-    .auth-buttons .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(255,0,76,0.2); }
+    .auth-buttons .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0, 204, 255, 0.2); }
     .profile-menu img { width: 40px; height: 40px; border-radius: 50%; cursor: pointer; }
     #profile-dropdown { display:none; position:absolute; right:0; background:#141414; color:#fff; padding:10px; border-radius:8px; box-shadow:0 5px 15px rgba(0,0,0,0.3); min-width:150px; }
     #profile-dropdown label, #profile-dropdown button { display:block; width:100%; margin-bottom:8px; cursor:pointer; text-align:left; background:none; border:none; color:#fff; }
@@ -57,7 +57,7 @@
     header { min-height: 100vh; display: flex; align-items: center; justify-content: center; gap: 48px; padding: 120px 8%; position: relative; overflow: hidden; }
     .bg-shape { position: absolute; border-radius: 50%; filter: blur(110px); opacity: 0.6; z-index: 0; pointer-events: none }
     .bg-shape.red { background: var(--primary); width: 420px; height: 420px; top: -140px; left: -120px }
-    .bg-shape.orange { background: #ff6600; width: 360px; height: 360px; bottom: -140px; right: -120px }
+    .bg-shape.orange { background: #0084ff; width: 360px; height: 360px; bottom: -140px; right: -120px }
     .hero-text { flex: 1; min-width: 320px; max-width: 720px; z-index: 1 }
     .hero-text h1 { font-size: 3.2rem; line-height: 1.02; margin-bottom: 18px; font-weight: 800 }
     .hero-text h1 span { color: var(--primary) }
@@ -78,7 +78,7 @@
     /* FEATURES */
     .features { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; max-width: 1200px; margin: 0 auto; align-items: start; }
     .feature-box { background: var(--bg-light); padding: 28px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.02); transition: transform .3s ease, box-shadow .3s ease; text-align: left; min-height: 160px; opacity: 0; transform: translateX(-40px); }
-    .feature-box:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 0 25px rgba(255,0,76,0.4) }
+    .feature-box:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 0 25px rgba(0, 204, 255, 0.4) }
     .feature-icon { width: 42px; height: 42px; border-radius: 8px; background: rgba(255,0,76,0.04); display: inline-flex; align-items: center; justify-content: center; color: var(--primary); font-size: 18px; margin-bottom: 12px; }
     .feature-box h3 { font-size: 1.05rem; margin-bottom: 8px; color: #fff }
     .feature-box p { font-size: 0.95rem; color: var(--muted); margin: 0 }
@@ -88,13 +88,13 @@
     #pricing .accent { color: var(--primary) }
     .pricing-container { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 24px; max-width: 1200px; margin: 30px auto 8px; }
     .pricing-box { background: var(--bg-light); padding: 28px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.03); min-height: 300px; display: flex; flex-direction: column; opacity: 0; transform: translateX(-40px); transition: transform .3s ease, box-shadow .3s ease; }
-    .pricing-box:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 0 30px rgba(255,0,76,0.4) }
+    .pricing-box:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 0 30px rgba(0, 217, 255, 0.4) }
     .pricing-box h3 { margin: 0 0 6px 0; color: var(--primary); font-weight: 700 }
     .pricing-box .price { font-size: 1.35rem; font-weight: 800; color: #fff; margin-bottom: 12px }
     .pricing-box ul { list-style: none; padding: 0; margin: 0 0 12px 0; flex: 1 }
     .pricing-box li { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; color: var(--muted); font-size: 0.96rem }
     .tick { color: var(--green); font-weight: 700; margin-top: 2px }
-    .pricing-box.highlight { border: 2px solid rgba(255,255,255,0.9); box-shadow: 0 30px 72px rgba(255,0,76,0.12) }
+    .pricing-box.highlight { border: 2px solid rgba(255,255,255,0.9); box-shadow: 0 30px 72px rgba(0, 204, 255, 0.12) }
     .pricing-cta { display: inline-block; margin-top: 20px; background: var(--primary); color: #fff; padding: 12px 28px; border-radius: 26px; text-decoration: none; font-weight: 700; opacity: 0; transform: translateX(-40px); }
 
     /* FOOTER */
@@ -245,7 +245,7 @@
   <div class="footer-grid">
     <div class="footer-col fade-up">
       <div class="footer-logo">
-        <img src="logo.png" alt="FLUXX logo">
+        <img src="fluxnew.png" alt="FLUXX logo">
         <span>FLUXX CHEATS</span>
       </div>
       <p>Professional gaming enhancement tools for competitive gamers. Server-safe cheats with guaranteed updates and support.</p>
