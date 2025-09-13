@@ -23,7 +23,6 @@
       line-height: 1.45;
       scroll-behavior: smooth;
     }
-
     /* NAV */
     nav {
       position: fixed; top: 0; width: 100%;
@@ -36,22 +35,26 @@
     .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--primary); font-size: 1.05rem }
     .logo img { height: 46px; width: 46px; border-radius: 50%; object-fit: cover }
     nav ul { display: flex; gap: 24px; list-style: none }
-    nav a {
-      color: var(--text); text-decoration: none; font-weight: 600;
-      opacity: .95; transition: color .3s, border-bottom .3s;
-      padding-bottom: 2px;
-    }
+    nav a { color: var(--text); text-decoration: none; font-weight: 600; opacity: .95; transition: color .3s; }
     nav a:hover { color: var(--primary) }
-    nav a.active {
-      color: var(--primary);
-      border-bottom: 2px solid var(--primary);
+    nav a.active { color: var(--primary); border-bottom: 2px solid var(--primary); }
+    .auth-buttons, .profile-menu { display: flex; gap: 12px; align-items: center; position: relative; }
+    .auth-buttons .btn {
+      padding: 8px 20px; font-size: 0.9rem; cursor: pointer;
     }
+    .auth-buttons .btn.alt {
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.1);
+      color: var(--text);
+    }
+    .auth-buttons .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(255,0,76,0.2); }
+    .profile-menu img { width: 40px; height: 40px; border-radius: 50%; cursor: pointer; }
+    #profile-dropdown { display:none; position:absolute; right:0; background:#141414; color:#fff; padding:10px; border-radius:8px; box-shadow:0 5px 15px rgba(0,0,0,0.3); min-width:150px; }
+    #profile-dropdown label, #profile-dropdown button { display:block; width:100%; margin-bottom:8px; cursor:pointer; text-align:left; background:none; border:none; color:#fff; }
+    #profile-dropdown hr { border:0;border-top:1px solid #333;margin:8px 0; }
 
     /* HERO */
-    header {
-      min-height: 100vh; display: flex; align-items: center; justify-content: center;
-      gap: 48px; padding: 120px 8%; position: relative; overflow: hidden;
-    }
+    header { min-height: 100vh; display: flex; align-items: center; justify-content: center; gap: 48px; padding: 120px 8%; position: relative; overflow: hidden; }
     .bg-shape { position: absolute; border-radius: 50%; filter: blur(110px); opacity: 0.6; z-index: 0; pointer-events: none }
     .bg-shape.red { background: var(--primary); width: 420px; height: 420px; top: -140px; left: -120px }
     .bg-shape.orange { background: #ff6600; width: 360px; height: 360px; bottom: -140px; right: -120px }
@@ -60,12 +63,7 @@
     .hero-text h1 span { color: var(--primary) }
     .hero-text p { color: var(--muted); max-width: 680px; margin-bottom: 26px; font-size: 1.05rem }
     .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap }
-    .btn {
-      display: inline-block; background: var(--primary); color: #fff; text-decoration: none;
-      padding: 12px 28px; border-radius: 30px; font-weight: 700;
-      box-shadow: 0 14px 36px rgba(255,0,76,0.12);
-      transition: transform .18s ease, box-shadow .18s ease;
-    }
+    .btn { display: inline-block; background: var(--primary); color: #fff; text-decoration: none; padding: 12px 28px; border-radius: 30px; font-weight: 700; box-shadow: 0 14px 36px rgba(255,0,76,0.12); transition: transform .18s ease, box-shadow .18s ease; cursor:pointer; }
     .btn:hover { transform: translateY(-4px) }
     .btn.alt { background: transparent; border: 2px solid rgba(255,255,255,0.06); color: var(--text) }
     .hero-image { flex: 1; min-width: 260px; display: flex; justify-content: center; align-items: center; z-index: 1; position: relative }
@@ -78,40 +76,18 @@
     section p.lead { color: var(--muted); margin-bottom: 36px; max-width: 900px; margin-left: auto; margin-right: auto }
 
     /* FEATURES */
-    .features {
-      display: grid; grid-template-columns: repeat(4,1fr); gap: 20px;
-      max-width: 1200px; margin: 0 auto; align-items: start;
-    }
-    .feature-box {
-      background: var(--bg-light); padding: 28px; border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.02);
-      transition: transform .3s ease, box-shadow .3s ease;
-      text-align: left; min-height: 160px;
-      opacity: 0; transform: translateX(-40px);
-    }
+    .features { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; max-width: 1200px; margin: 0 auto; align-items: start; }
+    .feature-box { background: var(--bg-light); padding: 28px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.02); transition: transform .3s ease, box-shadow .3s ease; text-align: left; min-height: 160px; opacity: 0; transform: translateX(-40px); }
     .feature-box:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 0 25px rgba(255,0,76,0.4) }
-    .feature-icon {
-      width: 42px; height: 42px; border-radius: 8px; background: rgba(255,0,76,0.04);
-      display: inline-flex; align-items: center; justify-content: center;
-      color: var(--primary); font-size: 18px; margin-bottom: 12px;
-    }
+    .feature-icon { width: 42px; height: 42px; border-radius: 8px; background: rgba(255,0,76,0.04); display: inline-flex; align-items: center; justify-content: center; color: var(--primary); font-size: 18px; margin-bottom: 12px; }
     .feature-box h3 { font-size: 1.05rem; margin-bottom: 8px; color: #fff }
     .feature-box p { font-size: 0.95rem; color: var(--muted); margin: 0 }
 
     /* PRICING */
     #pricing h2 { font-size: 2.6rem; margin-bottom: 8px }
     #pricing .accent { color: var(--primary) }
-    .pricing-container {
-      display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 24px;
-      max-width: 1200px; margin: 30px auto 8px;
-    }
-    .pricing-box {
-      background: var(--bg-light); padding: 28px; border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.03); min-height: 300px;
-      display: flex; flex-direction: column;
-      opacity: 0; transform: translateX(-40px);
-      transition: transform .3s ease, box-shadow .3s ease;
-    }
+    .pricing-container { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 24px; max-width: 1200px; margin: 30px auto 8px; }
+    .pricing-box { background: var(--bg-light); padding: 28px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.03); min-height: 300px; display: flex; flex-direction: column; opacity: 0; transform: translateX(-40px); transition: transform .3s ease, box-shadow .3s ease; }
     .pricing-box:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 0 30px rgba(255,0,76,0.4) }
     .pricing-box h3 { margin: 0 0 6px 0; color: var(--primary); font-weight: 700 }
     .pricing-box .price { font-size: 1.35rem; font-weight: 800; color: #fff; margin-bottom: 12px }
@@ -119,18 +95,11 @@
     .pricing-box li { display: flex; gap: 10px; align-items: flex-start; padding: 8px 0; color: var(--muted); font-size: 0.96rem }
     .tick { color: var(--green); font-weight: 700; margin-top: 2px }
     .pricing-box.highlight { border: 2px solid rgba(255,255,255,0.9); box-shadow: 0 30px 72px rgba(255,0,76,0.12) }
-    .pricing-cta {
-      display: inline-block; margin-top: 20px; background: var(--primary);
-      color: #fff; padding: 12px 28px; border-radius: 26px; text-decoration: none;
-      font-weight: 700; opacity: 0; transform: translateX(-40px);
-    }
+    .pricing-cta { display: inline-block; margin-top: 20px; background: var(--primary); color: #fff; padding: 12px 28px; border-radius: 26px; text-decoration: none; font-weight: 700; opacity: 0; transform: translateX(-40px); }
 
     /* FOOTER */
     footer { background: #111; padding: 56px 40px 28px; margin-top: 48px; color: var(--muted) }
-    .footer-grid {
-      display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-      gap: 30px; max-width: 1200px; margin: 0 auto;
-    }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
     .footer-logo { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--primary); font-size: 1.05rem; margin-bottom: 10px }
     .footer-logo img { height: 42px; width: 42px; border-radius: 50%; object-fit: cover }
     .footer-col h4 { margin-bottom: 12px; color: #fff; font-size: 1.05rem }
@@ -138,20 +107,11 @@
     .footer-col li { margin-bottom: 10px }
     .footer-col a { color: var(--muted); text-decoration: none }
     .footer-col a:hover { color: var(--primary) }
-    .footer-bottom {
-      margin-top: 34px; border-top: 1px solid rgba(255,255,255,0.06);
-      padding-top: 18px; display: flex; justify-content: space-between;
-      align-items: center; flex-wrap: wrap; color: var(--muted);
-      font-size: 0.92rem; max-width: 1200px; margin: 34px auto 0;
-    }
-    .badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px; border-radius: 8px; background: rgba(255,255,255,0.02); color: var(--muted); text-decoration: none }
-    .badge.whatsapp { color: var(--green) }
-    .badge.discord { color: #5865F2 }
-    .badge.telegram { color: #229ED9 }
+    .footer-bottom { margin-top: 34px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; color: var(--muted); font-size: 0.92rem; max-width: 1200px; margin: 34px auto 0; }
 
     /* ANIMATIONS */
-    .fade-up { opacity: 0; transform: translateX(-40px); transition: all 0.8s ease }
-    .fade-up.visible { opacity: 1; transform: translateX(0) }
+    .fade-up { opacity: 0; transform: translateY(40px); transition: all 0.8s ease }
+    .fade-up.visible { opacity: 1; transform: translateY(0) }
 
     /* RESPONSIVE */
     @media (max-width:1024px) { .features { grid-template-columns: repeat(2,1fr) } }
@@ -161,182 +121,297 @@
       .hero-text p { text-align: center }
       .hero-image { order: -1 }
     }
-    @media (max-width:480px) {
-      .footer-bottom { flex-direction: column; gap: 10px; text-align: center }
-      .pricing-container { gap: 18px }
-      .feature-box { padding: 20px }
-    }
+    @media (max-width:480px) { .footer-bottom { flex-direction: column; gap: 10px; text-align: center } }
   </style>
 </head>
 <body>
-  <!-- NAV -->
-  <nav>
-    <div class="logo fade-up">
-      <img src="logo.png" alt="FLUXX logo">
-      <span>FLUXX-EROX</span>
-    </div>
-    <ul>
-      <li><a href="index.html" class="fade-up">Home</a></li>
-      <li><a href="packages.html" class="fade-up">Packages</a></li>
-      <li><a href="about.html" class="fade-up">About</a></li>
-    </ul>
-  </nav>
 
-  <!-- HERO -->
-  <header id="home">
-    <div class="bg-shape red"></div>
-    <div class="bg-shape orange"></div>
-    <div class="hero-text fade-up">
-      <h1 class="fade-up">Professional <span>Gaming</span><br> Enhancement Tools</h1>
-      <p class="fade-up">Dominate the competition with our server-safe, undetectable gaming tools. Professional grade cheats with 1-year updates and 24/7 support.</p>
-      <div class="hero-ctas fade-up">
-        <a class="btn fade-up" href="#pricing">View Packages</a>
-        <a class="btn alt fade-up" href="#features">Why FLUXX</a>
-      </div>
-    </div>
-    <div class="hero-image fade-up">
-      <img src="logo.png" alt="FLUXX logo floating">
-    </div>
-  </header>
+<!-- NAV -->
+<nav>
+  <div class="logo fade-up">
+    <img src="logo.png" alt="FLUXX logo">
+    <span>FLUXX-EROX</span>
+  </div>
+  <ul>
+    <li><a href="index.html" class="fade-up">Home</a></li>
+    <li><a href="packages.html" class="fade-up">Packages</a></li>
+    <li><a href="about.html" class="fade-up">About</a></li>
+  </ul>
+  
+  <!-- AUTH BUTTONS -->
+  <div class="auth-buttons">
+    <button id="signup-btn" class="btn">Sign Up</button>
+    <button id="login-btn" class="btn alt">Sign In</button>
+  </div>
 
-  <!-- FEATURES -->
-  <section id="features">
-    <h2 class="fade-up">Why Choose <span style="color:var(--primary)">FLUXX</span>?</h2>
-    <p class="lead fade-up">We provide the most advanced, secure, and reliable tools in the industry.</p>
-    <div class="features">
-      <article class="feature-box fade-up">
-        <div class="feature-icon">🛡️</div>
-        <h3>Server-Safe</h3>
-        <p>All our tools are completely undetectable and server-safe.</p>
-      </article>
-      <article class="feature-box fade-up">
-        <div class="feature-icon">⏰</div>
-        <h3>24/7 Support</h3>
-        <p>Round-the-clock customer support for all your needs.</p>
-      </article>
-      <article class="feature-box fade-up">
-        <div class="feature-icon">⚡</div>
-        <h3>Instant Updates</h3>
-        <p>Get immediate updates when new versions are released.</p>
-      </article>
-      <article class="feature-box fade-up">
-        <div class="feature-icon">👥</div>
-        <h3>Community</h3>
-        <p>Join thousands of satisfied users worldwide.</p>
-      </article>
+  <!-- PROFILE MENU -->
+  <div class="profile-menu" style="display:none;">
+    <img id="profile-pic" src="default-avatar.png" alt="Profile">
+    <div id="profile-dropdown">
+      <label for="upload-pic">Change Profile Pic</label>
+      <input type="file" id="upload-pic" style="display:none;">
+      <hr>
+      <button id="logout-btn">Logout</button>
     </div>
-  </section>
+  </div>
+</nav>
 
-  <!-- PRICING -->
-  <section id="pricing">
-    <h2 class="fade-up"><span>Premium</span> <span class="accent">Gaming Packages</span></h2>
-    <p class="lead fade-up">Choose from our range of professional gaming enhancement tools.</p>
-    <div class="pricing-container">
-      <div class="pricing-box fade-up">
-        <h3>Internal Preview</h3>
-        <div class="price">₹1,499</div>
-        <ul>
-          <li><span class="tick">✔</span> Advanced ESP</li>
-          <li><span class="tick">✔</span> Aimbot</li>
-          <li><span class="tick">✔</span> Anti-ban protection</li>
-          <li><span class="tick">✔</span> 1-year updates</li>
-        </ul>
-      </div>
-      <div class="pricing-box highlight fade-up">
-        <h3>Phone Panel</h3>
-        <div class="price">₹1,999</div>
-        <ul>
-          <li><span class="tick">✔</span> Mobile control panel</li>
-          <li><span class="tick">✔</span> Remote activation</li>
-          <li><span class="tick">✔</span> All Internal features</li>
-          <li><span class="tick">✔</span> Priority support</li>
-        </ul>
-      </div>
-      <div class="pricing-box fade-up">
-        <h3>Aim Kill</h3>
-        <div class="price">₹999</div>
-        <ul>
-          <li><span class="tick">✔</span> Perfect accuracy</li>
-          <li><span class="tick">✔</span> Headshot guarantee</li>
-          <li><span class="tick">✔</span> Customizable settings</li>
-          <li><span class="tick">✔</span> Regular updates</li>
-        </ul>
-      </div>
+<!-- HERO -->
+<header id="home">
+  <div class="bg-shape red"></div>
+  <div class="bg-shape orange"></div>
+  <div class="hero-text fade-up">
+    <h1 class="fade-up">Professional <span>Gaming</span><br> Enhancement Tools</h1>
+    <p class="fade-up">Dominate the competition with our server-safe, undetectable gaming tools. Professional grade cheats with 1-year updates and 24/7 support.</p>
+    <div class="hero-ctas fade-up">
+      <a class="btn fade-up" href="#pricing">View Packages</a>
+      <a class="btn alt fade-up" href="#features">Why FLUXX</a>
     </div>
-    
-    <a href="packages.html" class="pricing-cta fade-up" class="btn">View All Packages →</a>
+  </div>
+  <div class="hero-image fade-up">
+    <img src="logo.png" alt="FLUXX logo floating">
+  </div>
+</header>
 
-  </section>
+<!-- FEATURES -->
+<section id="features">
+  <h2 class="fade-up">Why Choose <span style="color:var(--primary)">FLUXX</span>?</h2>
+  <p class="lead fade-up">We provide the most advanced, secure, and reliable tools in the industry.</p>
+  <div class="features">
+    <article class="feature-box fade-up">
+      <div class="feature-icon">🛡️</div>
+      <h3>Server-Safe</h3>
+      <p>All our tools are completely undetectable and server-safe.</p>
+    </article>
+    <article class="feature-box fade-up">
+      <div class="feature-icon">⏰</div>
+      <h3>24/7 Support</h3>
+      <p>Round-the-clock customer support for all your needs.</p>
+    </article>
+    <article class="feature-box fade-up">
+      <div class="feature-icon">⚡</div>
+      <h3>Instant Updates</h3>
+      <p>Get immediate updates when new versions are released.</p>
+    </article>
+    <article class="feature-box fade-up">
+      <div class="feature-icon">👥</div>
+      <h3>Community</h3>
+      <p>Join thousands of satisfied users worldwide.</p>
+    </article>
+  </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-col fade-up">
-        <div class="footer-logo">
-          <img src="logo.png" alt="FLUXX logo">
-          <span>FLUXX CHEATS</span>
-        </div>
-        <p>Professional gaming enhancement tools for competitive gamers. Server-safe cheats with guaranteed updates and support.</p>
-      </div>
-      <div class="footer-col fade-up">
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="packages.html">Packages</a></li>
-          <li><a href="about.html">About</a></li>
-        </ul>
-      </div>
-      <div class="footer-col fade-up">
-        <h4>Products</h4>
-        <ul>
-          <li><a href="#">Internal Preview</a></li>
-          <li><a href="#">Phone Panel</a></li>
-          <li><a href="#">Paid Sensi</a></li>
-          <li><a href="#">Aim Kill</a></li>
-        </ul>
-      </div>
-      <div class="footer-col fade-up">
-        <h4>Contact</h4>
-        <a class="badge whatsapp" href="#">WhatsApp</a><br>
-        <a class="badge discord" href="https://discord.gg/TPEBbtqB">Discord</a><br>
-        <a class="badge telegram" href="#">Telegram</a>
-      </div>
+<!-- PRICING -->
+<section id="pricing">
+  <h2 class="fade-up"><span>Premium</span> <span class="accent">Gaming Packages</span></h2>
+  <p class="lead fade-up">Choose from our range of professional gaming enhancement tools.</p>
+  <div class="pricing-container">
+    <div class="pricing-box fade-up">
+      <h3>Internal Preview</h3>
+      <div class="price">₹1,499</div>
+      <ul>
+        <li><span class="tick">✔</span> Advanced ESP</li>
+        <li><span class="tick">✔</span> Aimbot</li>
+        <li><span class="tick">✔</span> Anti-ban protection</li>
+        <li><span class="tick">✔</span> 1-year updates</li>
+      </ul>
     </div>
-    <div class="footer-bottom fade-up">
-      <p>© 2024 FLUXX CHEATS. All rights reserved.</p>
-      <p>Made with ❤️ by fluxx Team</p>
+    <div class="pricing-box highlight fade-up">
+      <h3>Phone Panel</h3>
+      <div class="price">₹1,999</div>
+      <ul>
+        <li><span class="tick">✔</span> Mobile control panel</li>
+        <li><span class="tick">✔</span> Remote activation</li>
+        <li><span class="tick">✔</span> All Internal features</li>
+        <li><span class="tick">✔</span> Priority support</li>
+      </ul>
     </div>
-  </footer>
+    <div class="pricing-box fade-up">
+      <h3>Aim Kill</h3>
+      <div class="price">₹999</div>
+      <ul>
+        <li><span class="tick">✔</span> Perfect accuracy</li>
+        <li><span class="tick">✔</span> Headshot guarantee</li>
+        <li><span class="tick">✔</span> Customizable settings</li>
+        <li><span class="tick">✔</span> Regular updates</li>
+      </ul>
+    </div>
+  </div>
+  <a href="packages.html" class="pricing-cta fade-up">View All Packages →</a>
+</section>
 
-  <!-- SCRIPT -->
-<script>
-  // Animate fade-up
-  const faders = document.querySelectorAll('.fade-up');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col fade-up">
+      <div class="footer-logo">
+        <img src="logo.png" alt="FLUXX logo">
+        <span>FLUXX CHEATS</span>
+      </div>
+      <p>Professional gaming enhancement tools for competitive gamers. Server-safe cheats with guaranteed updates and support.</p>
+    </div>
+    <div class="footer-col fade-up">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="packages.html">Packages</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </div>
+    <div class="footer-col fade-up">
+      <h4>Products</h4>
+      <ul>
+        <li><a href="#">Internal Preview</a></li>
+        <li><a href="#">Phone Panel</a></li>
+        <li><a href="#">Paid Sensi</a></li>
+        <li><a href="#">Aim Kill</a></li>
+      </ul>
+    </div>
+    <div class="footer-col fade-up">
+      <h4>Contact</h4>
+      <a class="badge whatsapp" href="#">WhatsApp</a><br>
+      <a class="badge discord" href="https://discord.gg/TPEBbtqB">Discord</a><br>
+      <a class="badge telegram" href="#">Telegram</a>
+    </div>
+  </div>
+  <div class="footer-bottom fade-up">
+    <p>© 2024 FLUXX CHEATS. All rights reserved.</p>
+    <p>Made with ❤️ by FLUXX Team</p>
+  </div>
+</footer>
+
+<!-- SIGNUP / LOGIN MODAL -->
+<div id="auth-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:9999;justify-content:center;align-items:center;">
+  <div style="background:#141414;padding:30px;border-radius:12px;max-width:400px;width:90%;position:relative;">
+    <span id="close-auth" style="position:absolute;top:10px;right:15px;cursor:pointer;color:#fff;font-weight:bold;">✖</span>
+    <h2 id="auth-title" style="color:#fff;margin-bottom:15px;">Sign Up</h2>
+    <form id="auth-form">
+      <input type="text" name="name" placeholder="Full Name" style="width:100%;padding:10px;margin-bottom:12px;border-radius:8px;border:none;" required>
+      <input type="email" name="email" placeholder="Email" style="width:100%;padding:10px;margin-bottom:12px;border-radius:8px;border:none;" required>
+      <input type="password" name="password" placeholder="Password" style="width:100%;padding:10px;margin-bottom:12px;border-radius:8px;border:none;" required>
+      <button type="submit" style="width:100%;padding:12px;background:var(--primary);color:#fff;border:none;border-radius:8px;font-weight:bold;margin-bottom:10px;">Submit</button>
+    </form>
+    <button id="google-auth" style="width:100%;padding:10px;background:#4285F4;color:#fff;border:none;border-radius:8px;font-weight:bold;">Sign in with Google</button>
+  </div>
+</div>
+
+<!-- SCRIPT -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, onAuthStateChanged, updateProfile, signOut } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyD2uW1-CdMG2Ti-14G-_ycYAE8sqUp9Vp0",
+    authDomain: "flux-13574.firebaseapp.com",
+    projectId: "flux-13574",
+    storageBucket: "flux-13574.appspot.com",
+    messagingSenderId: "508056693555",
+    appId: "1:508056693555:web:2ae8c3316b1ba9fb716c46",
+    measurementId: "G-0KZ93YR9NM"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  // Modal logic
+  const modal = document.getElementById("auth-modal");
+  const title = document.getElementById("auth-title");
+  const form = document.getElementById("auth-form");
+  const close = document.getElementById("close-auth");
+  const googleBtn = document.getElementById("google-auth");
+  const signupBtn = document.getElementById("signup-btn");
+  const loginBtn = document.getElementById("login-btn");
+  const authButtons = document.querySelector(".auth-buttons");
+  const profileMenu = document.querySelector(".profile-menu");
+  const profilePic = document.getElementById("profile-pic");
+  const dropdown = document.getElementById("profile-dropdown");
+  const uploadPic = document.getElementById("upload-pic");
+  const logoutBtn = document.getElementById("logout-btn");
+
+  signupBtn.onclick = () => {
+    modal.style.display = "flex";
+    title.textContent = "Sign Up";
+    form.querySelector("input[name='name']").style.display = "block";
+    form.dataset.mode = "signup";
+  };
+  loginBtn.onclick = () => {
+    modal.style.display = "flex";
+    title.textContent = "Sign In";
+    form.querySelector("input[name='name']").style.display = "none";
+    form.dataset.mode = "login";
+  };
+  close.onclick = () => modal.style.display = "none";
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = form.email.value;
+    const password = form.password.value;
+    const mode = form.dataset.mode;
+
+    try {
+      if (mode === "signup") {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        if(form.name.value) await updateProfile(userCredential.user, { displayName: form.name.value });
+        alert("Signed up: " + userCredential.user.email);
       } else {
-        entry.target.classList.remove('visible');
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        alert("Logged in: " + userCredential.user.email);
       }
-    });
-  }, { threshold: 0.2 });
-  faders.forEach(el => observer.observe(el));
-
-  // Active nav link
-  const navLinks = document.querySelectorAll("nav a");
-  let currentPage = window.location.pathname.split("/").pop();
-
-  if (currentPage === "" || currentPage === "index.html") {
-    currentPage = "index.html";
-  }
-
-  navLinks.forEach(link => {
-    if (link.getAttribute("href") === currentPage) {
-      link.classList.add("active");
+      modal.style.display = "none";
+      form.reset();
+    } catch (err) {
+      alert(err.message);
     }
   });
-</script>
 
+  googleBtn.onclick = async () => {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      alert("Signed in as " + result.user.displayName);
+      modal.style.display = "none";
+      form.reset();
+    } catch (err) { alert(err.message); }
+  };
+
+  // Profile dropdown
+  profilePic.onclick = () => { dropdown.style.display = dropdown.style.display === "block" ? "none" : "block"; };
+  window.addEventListener("click", (e) => {
+    if (!profilePic.contains(e.target) && !dropdown.contains(e.target)) dropdown.style.display = "none";
+  });
+
+  uploadPic.addEventListener("change", async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = async () => {
+      const photoURL = reader.result;
+      try { await updateProfile(auth.currentUser, { photoURL }); profilePic.src = photoURL; alert("Profile picture updated!"); }
+      catch(err){ alert(err.message); }
+    };
+    reader.readAsDataURL(file);
+  });
+
+  logoutBtn.onclick = async () => { try { await signOut(auth); alert("Logged out!"); } catch(err){ alert(err.message); } };
+
+  // Auth state
+  onAuthStateChanged(auth, (user) => {
+    if(user){
+      authButtons.style.display = "none";
+      profileMenu.style.display = "flex";
+      profilePic.src = user.photoURL || "default-avatar.png";
+    } else {
+      authButtons.style.display = "flex";
+      profileMenu.style.display = "none";
+    }
+  });
+
+  // Fade-up animation
+  const faders = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if(entry.isIntersecting) entry.target.classList.add('visible'); else entry.target.classList.remove('visible'); });
+  }, { threshold: 0.2 });
+  faders.forEach(el => observer.observe(el));
+</script>
 </body>
 </html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purchase - FLUXX-EROX</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0d0d0d;
+      color: #fff;
+      text-align: center;
+      padding: 50px 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #111;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(255,0,76,0.5);
+    }
+    h1 {
+      color: #ff004c;
+      margin-bottom: 20px;
+    }
+    #qrcode {
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #qrcode canvas {
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(255,0,76,0.6);
+    }
+    .btn-back {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #ff004c;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+    .btn-back:hover {
+      background: #cc003d;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="title">Purchase</h1>
+    <p id="desc">Scan the QR code below to complete your purchase.</p>
+    <div id="qrcode"></div>
+    <p><b>After payment:</b> Contact support with your transaction ID.</p>
+    <a href="packages.html" class="btn-back">← Back to Packages</a>
+  </div>
+
+  <!-- QR Code Generator -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const item = params.get("item");
+
+    const title = document.getElementById("title");
+    const desc = document.getElementById("desc");
+    const qrContainer = document.getElementById("qrcode");
+
+    // ✅ Correct FamPay UPI ID
+    const upiID = "7068268917@fam"; 
+    const payeeName = "FLUXX-EROX";
+
+    const packages = {
+      internal: { name: "Internal Package", price: 1499 },
+      phone: { name: "Phone Panel Package", price: 1999 },
+      aimkill: { name: "Aimkill Package", price: 999 },
+      sensi: { name: "Paid Sensi Package", price: 199 },
+      push: { name: "Paid Push Package", price: 499 }
+    };
+
+    if (item && packages[item]) {
+      const pkg = packages[item];
+      title.innerText = "Purchase " + pkg.name;
+      desc.innerText = `Scan this QR code to buy the ${pkg.name} (₹${pkg.price}).`;
+
+      // ✅ Add package name in "tn" (transaction note/message)
+      const upiLink = `upi://pay?pa=${upiID}&pn=${encodeURIComponent(payeeName)}&am=${pkg.price}&cu=INR&tn=${encodeURIComponent(pkg.name)}`;
+
+      new QRCode(qrContainer, {
+        text: upiLink,
+        width: 250,
+        height: 250,
+        colorDark: "#ffffff",
+        colorLight: "#0d0d0d",
+        correctLevel: QRCode.CorrectLevel.H
+      });
+    } else {
+      title.innerText = "Invalid Package";
+      desc.innerText = "Please go back and select a valid package.";
+    }
+  </script>
+</body>
+</html>

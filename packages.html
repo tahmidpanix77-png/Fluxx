@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FLUXX-EROX - Packages</title>
-  <style>
-   :root {
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FLUXX-EROX - Packages</title>
+<style>
+:root {
   --primary: #ff004c;
   --primary-dark: #cc003d;
   --bg-dark: #0d0d0d;
@@ -25,7 +25,7 @@ body {
 header {
   background: #000;
   padding: 0 25px;
-  height: 70px;                
+  height: 70px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -70,7 +70,6 @@ header nav a:hover {
   color: var(--primary);
 }
 
-/* Active link style */
 header nav a.active {
   color: var(--primary);
   border-bottom: 2px solid var(--primary);
@@ -79,7 +78,7 @@ header nav a.active {
 
 /* Packages Section */
 .packages {
-  padding: 150px 50px 80px;
+  padding: 150px 20px 80px;
   text-align: center;
 }
 
@@ -89,6 +88,7 @@ header nav a.active {
   color: var(--primary);
 }
 
+/* Pricing Cards */
 .pricing-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -104,11 +104,17 @@ header nav a.active {
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   position: relative;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.pricing-card-inner {
+  transition: transform 0.2s ease;
+  transform-style: preserve-3d;
 }
 
 .pricing-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
 }
 
 .pricing-card h2 {
@@ -314,27 +320,81 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
-  </style>
+
+/* NEW: Arrow button + overlay image */
+.show-img-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s;
+}
+
+.show-img-btn:hover {
+  background: var(--primary-dark);
+}
+
+.product-img-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+  z-index: 5;
+}
+
+.product-img-overlay img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 12px;
+}
+
+.product-img-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+</style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="logo">
-      <img src="logo.png" alt="logo" width="40"> FLUXX-EROX
-    </div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="packages.html" class="active">Packages</a>
-      <a href="about.html">About</a>
-    </nav>
-  </header>
 
-  <!-- Packages Section -->
-  <section class="packages">
-    <h1 data-animate>Choose Your Package</h1>
-    <div class="pricing-container">
-      <!-- Internal Preview -->
-      <div class="pricing-card" data-animate>
+<header>
+  <div class="logo">
+    <img src="logo.png" alt="logo" width="40"> FLUXX-EROX
+  </div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="packages.html" class="active">Packages</a>
+    <a href="about.html">About</a>
+  </nav>
+</header>
+
+<section class="packages">
+  <h1 data-animate>Choose Your Package</h1>
+  <div class="pricing-container">
+
+    <!-- Internal Preview -->
+    <div class="pricing-card" data-animate>
+      <div class="pricing-card-inner">
+        <button class="show-img-btn">➤</button>
+        <div class="product-img-overlay">
+          <img src="internalflux.png" alt="Internal Preview">
+        </div>
         <h2>Internal Preview</h2>
         <div class="price">₹1,499 <span class="old-price">₹2,000</span></div>
         <p>Perfect for competitive players who need reliable tools</p>
@@ -348,30 +408,41 @@ footer {
           <li>Custom settings panel</li>
           <li>Multiple game support</li>
         </ul>
-        <a href="#" class="btn">Purchase Now</a>
+        <a href="purchase.html?item=internal" class="btn">Purchase</a>
       </div>
+    </div>
 
-      <!-- Phone Panel -->
-      <div class="pricing-card popular" data-animate>
+    <!-- Phone Panel -->
+    <div class="pricing-card popular" data-animate>
+      <div class="pricing-card-inner">
+        <button class="show-img-btn">➤</button>
+        <div class="product-img-overlay">
+          <img src="externalflux.png" alt="Phone Panel">
+        </div>
         <div class="popular-tag">Most Popular</div>
-        <h2>Phone Panel</h2>
+        <h2>External Panel</h2>
         <div class="price">₹1,999 <span class="old-price">₹2,500</span></div>
         <p>Most popular choice - control everything from your phone</p>
         <ul class="features">
           <li>All Internal Preview features</li>
-          <li>Mobile control panel</li>
           <li>Remote activation/deactivation</li>
-          <li>Phone-based configuration</li>
+          <li>External-based configuration</li>
           <li>Stealth mode activation</li>
           <li>Priority customer support</li>
           <li>Advanced customization</li>
           <li>Multi-device compatibility</li>
         </ul>
-        <a href="#" class="btn">Purchase Now</a>
+        <a href="purchase.html?item=phone" class="btn">Purchase</a>
       </div>
+    </div>
 
-      <!-- Paid Sensi -->
-      <div class="pricing-card" data-animate>
+    <!-- Paid Sensi -->
+    <div class="pricing-card" data-animate>
+      <div class="pricing-card-inner">
+        <button class="show-img-btn">➤</button>
+        <div class="product-img-overlay">
+          <img src="images/paid-sensi.png" alt="Paid Sensi">
+        </div>
         <h2>Paid Sensi</h2>
         <div class="price">₹199 <span class="old-price">₹300</span></div>
         <p>Enhance your gameplay with professional sensitivity settings</p>
@@ -385,16 +456,22 @@ footer {
           <li>Performance optimization</li>
           <li>Setup tutorial included</li>
         </ul>
-        <a href="#" class="btn">Purchase Now</a>
+        <a href="purchase.html?item=sensi" class="btn">Purchase</a>
       </div>
+    </div>
 
-      <!-- Paid Push -->
-      <div class="pricing-card" data-animate>
+    <!-- Paid Push -->
+    <div class="pricing-card" data-animate>
+      <div class="pricing-card-inner">
+        <button class="show-img-btn">➤</button>
+        <div class="product-img-overlay">
+          <img src="Free Fire Grandmaster Thumbnail.png" alt="Paid Push">
+        </div>
         <h2>Paid Push</h2>
-        <div class="price">₹499 <span class="old-price">₹700</span></div>
+        <div class="price">100stars=₹300<span class="old-price">₹700</span></div>
         <p>Perfect for ranking up quickly and efficiently</p>
         <ul class="features">
-          <li>Aggressive gameplay enhancement</li>
+          <li>1 star = 4rs</li>
           <li>Push rank optimization</li>
           <li>Advanced movement assist</li>
           <li>Tactical advantage tools</li>
@@ -403,11 +480,17 @@ footer {
           <li>Strategy recommendations</li>
           <li>Competitive edge tools</li>
         </ul>
-        <a href="#" class="btn">Purchase Now</a>
+        <a href="purchase.html?item=push" class="btn">Purchase</a>
       </div>
+    </div>
 
-      <!-- Aim Kill -->
-      <div class="pricing-card" data-animate>
+    <!-- Aim Kill -->
+    <div class="pricing-card" data-animate>
+      <div class="pricing-card-inner">
+        <button class="show-img-btn">➤</button>
+        <div class="product-img-overlay">
+          <img src="aimkillflux.jpeg" alt="Aim Kill">
+        </div>
         <h2>Aim Kill</h2>
         <div class="price">₹999 <span class="old-price">₹1,200</span></div>
         <p>Ultimate aiming solution for competitive gaming</p>
@@ -421,12 +504,14 @@ footer {
           <li>Training mode included</li>
           <li>Professional-grade precision</li>
         </ul>
-        <a href="#" class="btn">Purchase Now</a>
+        <a href="purchase.html?item=aimkill" class="btn">Purchase</a>
       </div>
     </div>
-  </section>
 
- <!-- Guarantee Section -->
+  </div>
+</section>
+
+<!-- Guarantee Section -->
 <section class="guarantee" data-aos="fade-up">
   <h2><span style="color:white;">Our</span> <span style="color:#ff004c;">Guarantee</span></h2>
   <p>We stand behind our products with industry-leading guarantees and support.</p>
@@ -440,72 +525,104 @@ footer {
   </div>
 </section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-col fade-up">
-        <div class="footer-logo">
-          <img src="logo.png" alt="FLUXX logo">
-          <span>FLUXX CHEATS</span>
-        </div>
-        <p>Professional gaming enhancement tools for competitive gamers. Server-safe cheats with guaranteed updates and support.</p>
+<!-- Footer -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-col fade-up">
+      <div class="footer-logo">
+        <img src="logo.png" alt="FLUXX logo">
+        <span>FLUXX CHEATS</span>
       </div>
-      <div class="footer-col fade-up">
-        <h4>Quick Links</h4>
-        <a href="index.html">Home</a>
-        <a href="features.html">Features</a>
-        <a href="packages.html">Packages</a>
-        <a href="about.html">About</a>
-      </div>
-      <div class="footer-col fade-up">
-        <h4>Products</h4>
-        <a href="#">Internal Preview</a>
-        <a href="#">Phone Panel</a>
-        <a href="#">Paid Sensi</a>
-        <a href="#">Aim Kill</a>
-      </div>
-      <div class="footer-col fade-up">
-        <h4>Contact</h4>
-        <a class="badge whatsapp" href="#">WhatsApp</a>
-        <a class="badge discord" href="https://discord.gg/TPEBbtqB">Discord</a>
-        <a class="badge telegram" href="#">Telegram</a>
-      </div>
+      <p>Professional gaming enhancement tools for competitive gamers. Server-safe cheats with guaranteed updates and support.</p>
     </div>
-    <div class="footer-bottom fade-up">
-      <p>© 2024 FLUXX CHEATS. All rights reserved.</p>
-      <p>Made with ❤️ by fluxx Team</p>
+    <div class="footer-col fade-up">
+      <h4>Quick Links</h4>
+      <a href="index.html">Home</a>
+      <a href="features.html">Features</a>
+      <a href="packages.html">Packages</a>
+      <a href="about.html">About</a>
     </div>
-  </footer>
+    <div class="footer-col fade-up">
+      <h4>Products</h4>
+      <a href="#">Internal Preview</a>
+      <a href="#">Phone Panel</a>
+      <a href="#">Paid Sensi</a>
+      <a href="#">Aim Kill</a>
+    </div>
+    <div class="footer-col fade-up">
+      <h4>Contact</h4>
+      <a class="badge whatsapp" href="#">WhatsApp</a>
+      <a class="badge discord" href="https://discord.gg/TPEBbtqB">Discord</a>
+      <a class="badge telegram" href="#">Telegram</a>
+    </div>
+  </div>
+  <div class="footer-bottom fade-up">
+    <p>© 2024 FLUXX CHEATS. All rights reserved.</p>
+    <p>Made with ❤️ by fluxx Team</p>
+  </div>
+</footer>
 
-  <!-- Scroll Animation Script -->
-  <script>
-    // for package cards + titles
-    const elements = document.querySelectorAll("[data-animate]");
-    function animateOnScroll() {
-      elements.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 50 && rect.bottom > 50) {
-          el.classList.add("show");
-        } else {
-          el.classList.remove("show");
-        }
-      });
+<script>
+// Animate on scroll
+const elements = document.querySelectorAll("[data-animate]");
+function animateOnScroll() {
+  elements.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 50 && rect.bottom > 50) {
+      el.classList.add("show");
+    } else {
+      el.classList.remove("show");
     }
-    window.addEventListener("scroll", animateOnScroll);
-    window.addEventListener("load", animateOnScroll);
+  });
+}
+window.addEventListener("scroll", animateOnScroll);
+window.addEventListener("load", animateOnScroll);
 
-    // for footer fade-up
-    const faders = document.querySelectorAll(".fade-up");
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        } else {
-          entry.target.classList.remove("visible");
-        }
-      });
-    }, { threshold: 0.2 });
-    faders.forEach(el => observer.observe(el));
-  </script>
+const faders = document.querySelectorAll(".fade-up");
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) entry.target.classList.add("visible");
+    else entry.target.classList.remove("visible");
+  });
+}, { threshold: 0.2 });
+faders.forEach(el => observer.observe(el));
+
+// Card hover tilt effect
+const cards = document.querySelectorAll(".pricing-card");
+cards.forEach(card => {
+  const inner = card.querySelector(".pricing-card-inner");
+  card.addEventListener("mousemove", e => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width/2;
+    const centerY = rect.height/2;
+    const rotateX = ((y - centerY) / centerY) * 0;
+    const rotateY = ((x - centerX) / centerX) * 30;
+    inner.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
+  });
+  card.addEventListener("mouseleave", e => {
+    inner.style.transform = `rotateX(0deg) rotateY(0deg) translateZ(0px)`;
+  });
+});
+
+// NEW: Image overlay toggle
+const showImgBtns = document.querySelectorAll(".show-img-btn");
+showImgBtns.forEach(btn => {
+  const overlay = btn.parentElement.querySelector(".product-img-overlay");
+
+  btn.addEventListener("click", e => {
+    e.stopPropagation();
+    overlay.classList.toggle("show");
+  });
+
+  document.addEventListener("click", e => {
+    if (!overlay.contains(e.target) && !btn.contains(e.target)) {
+      overlay.classList.remove("show");
+    }
+  });
+});
+</script>
+
 </body>
 </html>
