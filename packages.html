@@ -46,28 +46,32 @@ header .logo {
 
 header .logo img {
   margin-right: 8px;
-  border-radius: 50%;
+  border-radius: 50%;height: 46px; width: 46px; border-radius: 50%; object-fit: cover;
 }
 
 header nav {
   display: flex;
-  align-items: center;
-  gap: 0;
+ 
+  justify-content: space-between;
+      align-items: center;
+    padding: 15px 50px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
 }
 
 header nav a {
-  color: var(--text);
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem;
-  line-height: 70px;
-  padding: 0 8px;
-  letter-spacing: -0.3px;
-  transition: color 0.3s;
+  
+ margin: 0 15px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
 }
 
 header nav a:hover {
   color: var(--primary);
+  
 }
 
 header nav a.active {
@@ -227,13 +231,14 @@ footer {
 .footer-logo {
   display: flex;
   align-items: center;
+  
   margin-bottom: 10px;
   font-weight: bold;
   color: var(--primary);
 }
 
 .footer-logo img {
-  width: 40px;
+  width: 40px;height: 46px; width: 46px; border-radius: 50%; object-fit: cover;
   margin-right: 10px;
 }
 
@@ -395,7 +400,8 @@ footer {
         <div class="product-img-overlay">
           <img src="internalflux.png" alt="Internal Preview">
         </div>
-        <h2>Internal Preview</h2>
+        <div class="popular-tag">Most Popular</div>
+        <h2>Internal Panel</h2>
         <div class="price">₹1,499 <span class="old-price">₹2,000</span></div>
         <p>Perfect for competitive players who need reliable tools</p>
         <ul class="features">
@@ -419,10 +425,10 @@ footer {
         <div class="product-img-overlay">
           <img src="externalflux.png" alt="Phone Panel">
         </div>
-        <div class="popular-tag">Most Popular</div>
+        
         <h2>External Panel</h2>
         <div class="price">₹1,999 <span class="old-price">₹2,500</span></div>
-        <p>Most popular choice - control everything from your phone</p>
+        <p>Best choice among the Packages, purchase and dominate</p>
         <ul class="features">
           <li>All Internal Preview features</li>
           <li>Remote activation/deactivation</li>
@@ -468,7 +474,7 @@ footer {
           <img src="Free Fire Grandmaster Thumbnail.png" alt="Paid Push">
         </div>
         <h2>Paid Push</h2>
-        <div class="price">100stars=₹300<span class="old-price">₹700</span></div>
+        <div class="price">100stars/₹300<span class="old-price">₹700</span></div>
         <p>Perfect for ranking up quickly and efficiently</p>
         <ul class="features">
           <li>1 star = 4rs</li>
@@ -598,7 +604,7 @@ cards.forEach(card => {
     const centerX = rect.width/2;
     const centerY = rect.height/2;
     const rotateX = ((y - centerY) / centerY) * 0;
-    const rotateY = ((x - centerX) / centerX) * 30;
+    const rotateY = ((x - centerX) / centerX) * 0;
     inner.style.transform = `rotateX(${-rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`;
   });
   card.addEventListener("mouseleave", e => {

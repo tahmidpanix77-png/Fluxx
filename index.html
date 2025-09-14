@@ -28,9 +28,9 @@
       position: fixed; top: 0; width: 100%;
       display: flex; align-items: center; justify-content: space-between;
       padding: 12px 40px;
-      background: rgba(0,0,0,0.85);
+      background: rgba(5, 5, 5, 0.85);
       z-index: 999; backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(255,0,76,0.03);
+      border-bottom: 1px solid rgba(0, 210, 247, 0.03);
     }
     .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--primary); font-size: 1.05rem }
     .logo img { height: 46px; width: 46px; border-radius: 50%; object-fit: cover }
@@ -44,12 +44,12 @@
     }
     .auth-buttons .btn.alt {
       background: transparent;
-      border: 2px solid rgba(255,255,255,0.1);
+      border: 2px solid rgba(10, 207, 241, 0.1);
       color: var(--text);
     }
     .auth-buttons .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0, 204, 255, 0.2); }
     .profile-menu img { width: 40px; height: 40px; border-radius: 50%; cursor: pointer; }
-    #profile-dropdown { display:none; position:absolute; right:0; background:#141414; color:#fff; padding:10px; border-radius:8px; box-shadow:0 5px 15px rgba(0,0,0,0.3); min-width:150px; }
+    #profile-dropdown { display:none; position:absolute; right:0; background:#02d0df; color:#fff; padding:10px; border-radius:8px; box-shadow:0 5px 15px rgba(36, 151, 228, 0.3); min-width:150px; }
     #profile-dropdown label, #profile-dropdown button { display:block; width:100%; margin-bottom:8px; cursor:pointer; text-align:left; background:none; border:none; color:#fff; }
     #profile-dropdown hr { border:0;border-top:1px solid #333;margin:8px 0; }
 
@@ -65,7 +65,7 @@
     .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap }
     .btn { display: inline-block; background: var(--primary); color: #fff; text-decoration: none; padding: 12px 28px; border-radius: 30px; font-weight: 700; box-shadow: 0 14px 36px rgba(255,0,76,0.12); transition: transform .18s ease, box-shadow .18s ease; cursor:pointer; }
     .btn:hover { transform: translateY(-4px) }
-    .btn.alt { background: transparent; border: 2px solid rgba(255,255,255,0.06); color: var(--text) }
+    .btn.alt { background: transparent; border: 2px solid rgb(8, 131, 245); color: var(--text) }
     .hero-image { flex: 1; min-width: 260px; display: flex; justify-content: center; align-items: center; z-index: 1; position: relative }
     .hero-image img { width: 360px; max-width: 90%; border-radius: 50%; animation: float 3.2s ease-in-out infinite; position: relative; z-index: 2 }
     @keyframes float { 0%{transform:translateY(0)} 50%{transform:translateY(-12px)} 100%{transform:translateY(0)} }
@@ -79,7 +79,7 @@
     .features { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; max-width: 1200px; margin: 0 auto; align-items: start; }
     .feature-box { background: var(--bg-light); padding: 28px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.02); transition: transform .3s ease, box-shadow .3s ease; text-align: left; min-height: 160px; opacity: 0; transform: translateX(-40px); }
     .feature-box:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 0 25px rgba(0, 204, 255, 0.4) }
-    .feature-icon { width: 42px; height: 42px; border-radius: 8px; background: rgba(255,0,76,0.04); display: inline-flex; align-items: center; justify-content: center; color: var(--primary); font-size: 18px; margin-bottom: 12px; }
+    .feature-icon { width: 42px; height: 42px; border-radius: 8px; background: rgba(243, 239, 239, 0); display: inline-flex; align-items: center; justify-content: center; color: var(--primary); font-size: 18px; margin-bottom: 12px; }
     .feature-box h3 { font-size: 1.05rem; margin-bottom: 8px; color: #fff }
     .feature-box p { font-size: 0.95rem; color: var(--muted); margin: 0 }
 
